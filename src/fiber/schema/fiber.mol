@@ -23,12 +23,6 @@ table OpenChannel {
     min_tlc_value:               Uint128,
     commitment_delay_epoch:      Uint64,
     funding_pubkey:              Pubkey,
-    // deprecated
-    revocation_basepoint:        Pubkey,
-    // deprecated
-    payment_basepoint:           Pubkey,
-    // deprecated
-    delayed_payment_basepoint:   Pubkey,
     tlc_basepoint:               Pubkey,
     first_per_commitment_point:  Pubkey,
     second_per_commitment_point: Pubkey,
@@ -45,15 +39,7 @@ table AcceptChannel {
     max_tlc_value_in_flight:     Uint128,
     max_tlc_number_in_flight:    Uint64,
     min_tlc_value:               Uint128,
-    // deprecated
-    commitment_delay_epoch:      Uint64,
     funding_pubkey:              Pubkey,
-    // deprecated
-    revocation_basepoint:        Pubkey,
-    // deprecated
-    payment_basepoint:           Pubkey,
-    // deprecated
-    delayed_payment_basepoint:   Pubkey,
     tlc_basepoint:               Pubkey,
     first_per_commitment_point:  Pubkey,
     second_per_commitment_point: Pubkey,
@@ -61,7 +47,7 @@ table AcceptChannel {
     next_local_nonce:            PubNonce,
 }
 
-table CommitmentSigned {
+struct CommitmentSigned {
     channel_id:                       Byte32,
     funding_tx_partial_signature:     Byte32,
     commitment_tx_partial_signature:  Byte32,
@@ -74,7 +60,7 @@ table TxSignatures {
     witnesses:  BytesVec,
 }
 
-table ChannelReady {
+struct ChannelReady {
     channel_id: Byte32,
 }
 
@@ -83,7 +69,7 @@ table TxUpdate {
     tx:         Transaction,
 }
 
-table TxComplete {
+struct TxComplete {
     channel_id: Byte32,
 }
 
@@ -107,8 +93,8 @@ table Shutdown {
     close_script: Script,
 }
 
-table ClosingSigned {
-    channel_id: Byte32,
+struct ClosingSigned {
+    channel_id:         Byte32,
     partial_signature:  Byte32,
 }
 
@@ -124,10 +110,11 @@ table AddTlc {
     onion_packet:   Bytes,
 }
 
-table RevokeAndAck {
-    channel_id:                 Byte32,
-    partial_signature:          Byte32,
-    next_per_commitment_point:  Pubkey,
+struct RevokeAndAck {
+    channel_id:                         Byte32,
+    revocation_partial_signature:       Byte32,
+    commitment_tx_partial_signature:    Byte32,
+    next_per_commitment_point:          Pubkey,
 }
 
 struct RemoveTlcFulfill {
