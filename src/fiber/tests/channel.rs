@@ -1026,10 +1026,10 @@ async fn do_test_channel_commitment_tx_after_add_tlc(algorithm: HashAlgorithm) {
     // to be received by node b.
     let node_b_commitment_tx = node_b
         .expect_to_process_event(|event| match event {
-            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, num, tx) => {
+            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, tx, _) => {
                 println!(
-                    "Commitment tx (#{}) {:?} from {:?} for channel {:?} received",
-                    num, &tx, peer_id, channel_id
+                    "Commitment tx {:?} from {:?} for channel {:?} received",
+                    &tx, peer_id, channel_id
                 );
                 assert_eq!(peer_id, &node_a.peer_id);
                 assert_eq!(channel_id, &new_channel_id);
@@ -1063,10 +1063,10 @@ async fn do_test_channel_commitment_tx_after_add_tlc(algorithm: HashAlgorithm) {
     // to be received by node a.
     let node_a_commitment_tx = node_a
         .expect_to_process_event(|event| match event {
-            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, num, tx) => {
+            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, tx, _) => {
                 println!(
-                    "Commitment tx (#{}) {:?} from {:?} for channel {:?} received",
-                    num, &tx, peer_id, channel_id
+                    "Commitment tx {:?} from {:?} for channel {:?} received",
+                    &tx, peer_id, channel_id
                 );
                 assert_eq!(peer_id, &node_b.peer_id);
                 assert_eq!(channel_id, &new_channel_id);
@@ -1646,10 +1646,10 @@ async fn test_revoke_old_commitment_transaction() {
 
     let commitment_tx = node_b
         .expect_to_process_event(|event| match event {
-            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, num, tx) => {
+            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, tx, _) => {
                 println!(
-                    "Commitment tx (#{}) {:?} from {:?} for channel {:?} received",
-                    num, &tx, peer_id, channel_id
+                    "Commitment tx {:?} from {:?} for channel {:?} received",
+                    &tx, peer_id, channel_id
                 );
                 assert_eq!(peer_id, &node_a.peer_id);
                 assert_eq!(channel_id, &new_channel_id);
@@ -1824,10 +1824,10 @@ async fn test_create_channel() {
 
     let node_a_commitment_tx = node_a
         .expect_to_process_event(|event| match event {
-            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, num, tx) => {
+            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, tx, _) => {
                 println!(
-                    "Commitment tx (#{}) {:?} from {:?} for channel {:?} received",
-                    num, &tx, peer_id, channel_id
+                    "Commitment tx {:?} from {:?} for channel {:?} received",
+                    &tx, peer_id, channel_id
                 );
                 assert_eq!(peer_id, &node_b.peer_id);
                 assert_eq!(channel_id, &new_channel_id);
@@ -1839,10 +1839,10 @@ async fn test_create_channel() {
 
     let node_b_commitment_tx = node_b
         .expect_to_process_event(|event| match event {
-            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, num, tx) => {
+            NetworkServiceEvent::RemoteCommitmentSigned(peer_id, channel_id, tx, _) => {
                 println!(
-                    "Commitment tx (#{}) {:?} from {:?} for channel {:?} received",
-                    num, &tx, peer_id, channel_id
+                    "Commitment tx {:?} from {:?} for channel {:?} received",
+                    &tx, peer_id, channel_id
                 );
                 assert_eq!(peer_id, &node_a.peer_id);
                 assert_eq!(channel_id, &new_channel_id);

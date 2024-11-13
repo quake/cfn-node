@@ -493,7 +493,7 @@ impl NetworkActorMessage {
     }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub enum NetworkServiceEvent {
     NetworkStarted(PeerId, MultiAddr, Vec<Multiaddr>),
     NetworkStopped(PeerId),
@@ -529,8 +529,8 @@ pub enum NetworkServiceEvent {
     ),
     // The other party has signed a valid commitment transaction,
     // and we successfully assemble the partial signature from other party
-    // to create a complete commitment transaction.
-    RemoteCommitmentSigned(PeerId, Hash256, u64, TransactionView),
+    // to create a complete commitment transaction and a settlement transaction.
+    RemoteCommitmentSigned(PeerId, Hash256, TransactionView, TransactionView),
     // The syncing of network information has completed.
     SyncingCompleted,
 }

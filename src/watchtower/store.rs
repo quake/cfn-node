@@ -1,4 +1,7 @@
-use ckb_types::packed::{Bytes, CellOutput, Script};
+use ckb_types::{
+    packed::{Bytes, CellOutput, Script, Transaction},
+    prelude::*,
+};
 use musig2::CompactSignature;
 use serde::{Deserialize, Serialize};
 use serde_with::serde_as;
@@ -15,6 +18,8 @@ pub trait WatchtowerStore {
     fn remove_watch_channel(&self, channel_id: Hash256);
     /// Update the revocation data of a channel, the watchtower will use this data to revoke an old version commitment transaction
     fn update_revocation(&self, channel_id: Hash256, revocation_data: RevocationData);
+    /// Update the settlement data of a channel, the watchtower will use this data to settle the commitment transaction of a force closed channel
+    fn update_settlement(&self, channel_id: Hash256, settlement_data: SettlementData);
 }
 
 /// The data of a channel that the watchtower is monitoring
@@ -25,6 +30,7 @@ pub struct ChannelData {
     #[serde_as(as = "EntityHex")]
     pub funding_tx_lock: Script,
     pub revocation_data: Option<RevocationData>,
+    pub settlement_data: Option<SettlementData>,
 }
 
 #[serde_as]
@@ -38,4 +44,17 @@ pub struct RevocationData {
     pub output: CellOutput,
     #[serde_as(as = "EntityHex")]
     pub output_data: Bytes,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct SettlementData {
+    #[serde_as(as = "EntityHex")]
+    pub settlement_tx: Transaction,
+}
+
+impl PartialEq for SettlementData {
+    fn eq(&self, other: &Self) -> bool {
+        self.settlement_tx.as_slice() == other.settlement_tx.as_slice()
+    }
 }
