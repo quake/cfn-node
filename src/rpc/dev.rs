@@ -20,7 +20,9 @@ use crate::{
 #[serde_as]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub(crate) struct SubmitCommitmentTransactionParams {
+    /// Channel ID
     channel_id: Hash256,
+    /// Commitment number
     #[serde_as(as = "U64Hex")]
     commitment_number: u64,
 }
@@ -29,11 +31,15 @@ pub(crate) struct SubmitCommitmentTransactionParams {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 
 pub(crate) struct SubmitCommitmentTransactionResult {
+    /// Submitted commitment transaction hash
     tx_hash: Hash256,
 }
 
+/// RPC module for development purposes, this module is not intended to be used in production.
+/// This module will be disabled in release build.
 #[rpc(server)]
 trait DevRpc {
+    /// Submit a commitment transaction to the chain
     #[method(name = "submit_commitment_transaction")]
     async fn submit_commitment_transaction(
         &self,
