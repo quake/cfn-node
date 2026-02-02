@@ -1731,7 +1731,7 @@ dependencies = [
  "digest 0.10.7",
  "elliptic-curve",
  "rfc6979",
- "serdect",
+ "serdect 0.2.0",
  "signature",
  "spki 0.7.3",
 ]
@@ -1783,7 +1783,7 @@ dependencies = [
  "pkcs8 0.10.2",
  "rand_core 0.6.4",
  "sec1",
- "serdect",
+ "serdect 0.2.0",
  "subtle",
  "zeroize",
 ]
@@ -1884,6 +1884,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "fiber-sphinx"
+version = "2.3.0"
+source = "git+https://github.com/quake/fiber-sphinx?branch=develop#2ca054168682e4ddc06b2b757b138d7451bc95d0"
+dependencies = [
+ "chacha20",
+ "hmac",
+ "secp256k1 0.30.0",
+ "sha2 0.10.9",
+ "thiserror 1.0.69",
+]
+
+[[package]]
 name = "fiber-wasm-db-common"
 version = "0.1.0"
 dependencies = [
@@ -1958,7 +1970,7 @@ dependencies = [
  "console",
  "console_error_panic_hook",
  "either",
- "fiber-sphinx",
+ "fiber-sphinx 2.2.0",
  "fiber-wasm-db-common 0.1.0 (git+https://github.com/nervosnetwork/fiber.git?tag=v0.6.0)",
  "futures",
  "getrandom 0.2.16",
@@ -1972,7 +1984,7 @@ dependencies = [
  "lightning-invoice",
  "lnd-grpc-tonic-client",
  "molecule",
- "musig2",
+ "musig2 0.0.11",
  "nom",
  "num_enum",
  "once_cell",
@@ -2027,7 +2039,7 @@ dependencies = [
  "console",
  "console_error_panic_hook",
  "either",
- "fiber-sphinx",
+ "fiber-sphinx 2.2.0",
  "fiber-wasm-db-common 0.1.0 (git+https://github.com/nervosnetwork/fiber.git?rev=491fdd2)",
  "futures",
  "getrandom 0.2.16",
@@ -2041,7 +2053,7 @@ dependencies = [
  "lightning-invoice",
  "lnd-grpc-tonic-client",
  "molecule",
- "musig2",
+ "musig2 0.0.11",
  "nom",
  "num_enum",
  "once_cell",
@@ -2095,7 +2107,7 @@ dependencies = [
  "console",
  "console_error_panic_hook",
  "either",
- "fiber-sphinx",
+ "fiber-sphinx 2.3.0",
  "fiber-wasm-db-common 0.1.0",
  "futures",
  "getrandom 0.2.16",
@@ -2109,7 +2121,7 @@ dependencies = [
  "lightning-invoice",
  "lnd-grpc-tonic-client",
  "molecule",
- "musig2",
+ "musig2 0.2.4",
  "nom",
  "num_enum",
  "once_cell",
@@ -2119,7 +2131,7 @@ dependencies = [
  "rand 0.8.5",
  "regex",
  "scrypt",
- "secp256k1 0.28.2",
+ "secp256k1 0.30.0",
  "serde",
  "serde_json",
  "serde_with",
@@ -3572,10 +3584,27 @@ dependencies = [
  "base16ct",
  "hmac",
  "once_cell",
- "secp",
+ "secp 0.2.4",
  "secp256k1 0.28.2",
  "serde",
- "serdect",
+ "serdect 0.2.0",
+ "sha2 0.10.9",
+ "subtle",
+]
+
+[[package]]
+name = "musig2"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d89eb08ce8778538f84198774795f418358360a29841cfea8dbbb28c04d777e2"
+dependencies = [
+ "base16ct",
+ "hmac",
+ "once_cell",
+ "secp 0.5.0",
+ "secp256k1 0.30.0",
+ "serde",
+ "serdect 0.3.0",
  "sha2 0.10.9",
  "subtle",
 ]
@@ -4805,7 +4834,7 @@ dependencies = [
  "der 0.7.10",
  "generic-array",
  "pkcs8 0.10.2",
- "serdect",
+ "serdect 0.2.0",
  "subtle",
  "zeroize",
 ]
@@ -4820,7 +4849,21 @@ dependencies = [
  "once_cell",
  "secp256k1 0.28.2",
  "serde",
- "serdect",
+ "serdect 0.2.0",
+ "subtle",
+]
+
+[[package]]
+name = "secp"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d7ac68feda6cce08c5091b4e87cf93d4b7fa04b4afd9988d4b36121d949f79ec"
+dependencies = [
+ "base16ct",
+ "once_cell",
+ "secp256k1 0.30.0",
+ "serde",
+ "serdect 0.3.0",
  "subtle",
 ]
 
@@ -4856,6 +4899,7 @@ dependencies = [
  "bitcoin_hashes 0.14.0",
  "rand 0.8.5",
  "secp256k1-sys 0.10.1",
+ "serde",
 ]
 
 [[package]]
@@ -5038,6 +5082,16 @@ name = "serdect"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a84f14a19e9a014bb9f4512488d9829a68e04ecabffb0f9904cd1ace94598177"
+dependencies = [
+ "base16ct",
+ "serde",
+]
+
+[[package]]
+name = "serdect"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f42f67da2385b51a5f9652db9c93d78aeaf7610bf5ec366080b6de810604af53"
 dependencies = [
  "base16ct",
  "serde",
