@@ -2223,7 +2223,8 @@ dependencies = [
 [[package]]
 name = "fiber-sphinx"
 version = "2.3.0"
-source = "git+https://github.com/quake/fiber-sphinx?branch=develop#2ca054168682e4ddc06b2b757b138d7451bc95d0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c2ef0454b7ac3e87de49cab71ef0f27f716d00974cedb1b00426ab7b822212d8"
 dependencies = [
  "chacha20",
  "hmac",
